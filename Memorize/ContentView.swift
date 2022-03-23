@@ -8,19 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
-    var emojiGameModel: EmojiMemoryGame
-    @State var emojiCount = 8
+    @ObservedObject var emojiGameModel: EmojiMemoryGame
     
     var body: some View {
-        VStack {
-            ScrollView{
-                LazyVGrid(
-                    columns: [GridItem(.adaptive(minimum: 65))]
-                ){
-                    ForEach(self.emojiGameModel.cards[0..<emojiCount], id: \.content.self){ card in
-                        CardView(content: card.content)
-                            .aspectRatio(2/3, contentMode: .fit)
-                    }
+        ScrollView{
+            LazyVGrid(
+                columns: [GridItem(.adaptive(minimum: 65))]
+            ){
+                ForEach(self.emojiGameModel.cards){ card in
+                    CardView(card: card)
+                        .aspectRatio(2/3, contentMode: .fit)
+                        .onTapGesture {
+                            self.emojiGameModel.choose(card)
+                        }
                 }
             }
         }
