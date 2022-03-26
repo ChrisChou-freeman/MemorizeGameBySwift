@@ -17,8 +17,8 @@ class EmojiMemoryGame: ObservableObject {
                         "🚋", "🚌", "🚍", "🚎", "🚐", "🚑", "🚒", "🚓", "🚔", "🚕",
                         "🚖", "🚗", "🚘", "🚙", "🛻", "🚚", "🚛"]
     
-    @Published private var model = MemoryGame(numberOfPairsCards: 4) { pairIndex in
-        emojiFood[pairIndex]
+    @Published private var model = MemoryGame(numberOfPairsCards: 10) { pairIndex in
+        emojiVehicle[pairIndex]
     }
     
     var cards: [Card]{
