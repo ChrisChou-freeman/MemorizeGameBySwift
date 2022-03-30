@@ -13,26 +13,25 @@ struct CardView: View{
     var body: some View{
         GeometryReader{ geometry in
             ZStack {
-                let shape = RoundedRectangle(cornerRadius: DrawingConstants.cornerRaius)
-                if self.card.isFaceUp{
-                    shape.fill().foregroundColor(.white)
-                    shape.strokeBorder(lineWidth: DrawingConstants.shapBorderWidth)
-                    Pie(
-                        startAngle: Angle(degrees: 0-90),
-                        endAngle: Angle(degrees: 10-90)
-                    )
-                        .padding(5)
-                        .opacity(0.5)
-                    Text(self.card.content).font(font(in: geometry.size))
-                } else if self.card.isMatched{
-                    shape.opacity(0)
-                }
-                else{
-                    shape.fill()
-                }
+                Pie(
+                    startAngle: Angle(degrees: 0-90),
+                    endAngle: Angle(degrees: 10-90)
+                )
+                    .padding(5)
+                    .opacity(0.5)
+                Text(self.card.content)
+                    .rotationEffect(Angle.degrees(card.isMatched ? 360: 0))
+                    .animation(Animation.linear(duration: 1), value: self.card.isMatched)
+                    .font(Font.system(size: DrawingConstants.fontSize))
+                    .scaleEffect(self.scale(thatFits: geometry.size))
             }
+            .cardify(isFaceup: self.card.isFaceUp)
             .foregroundColor(.red)
         }
+    }
+    
+    private func scale(thatFits size: CGSize) -> CGFloat {
+        min(size.width, size.height) / (DrawingConstants.fontSize / DrawingConstants.fontScale)
     }
     
     private func font(in size: CGSize) -> Font{
@@ -42,14 +41,8 @@ struct CardView: View{
     }
     
     private struct DrawingConstants{
-        static let cornerRaius: CGFloat = 10
-        static let shapBorderWidth: CGFloat = 3
-        static let fontScale: CGFloat = 0.7    }
+        static let fontScale: CGFloat = 0.7
+        static let fontSize: CGFloat = 32
+    }
 }
 
-
-//struct CardView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CardView()
-//    }
-//}
