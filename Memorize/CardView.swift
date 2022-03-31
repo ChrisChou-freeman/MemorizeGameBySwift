@@ -9,14 +9,30 @@ import SwiftUI
 
 struct CardView: View{
     let card: EmojiMemoryGame.Card
+    @State private var animatedBonusRemianing: Double = 0
     
     var body: some View{
         GeometryReader{ geometry in
             ZStack {
-                Pie(
-                    startAngle: Angle(degrees: 0-90),
-                    endAngle: Angle(degrees: 10-90)
-                )
+                Group{
+                    if self.card.isConsumingBonusTime{
+                        Pie(
+                            startAngle: Angle(degrees: 0-90),
+                            endAngle: Angle(degrees: (1-self.animatedBonusRemianing)*360-90)
+                        )
+                        .onAppear{
+                            self.animatedBonusRemianing = card.bonusRemaining
+                            withAnimation(.linear(duration: self.card.bonusTimeRemaining)){
+                                self.animatedBonusRemianing = 0
+                            }
+                        }
+                    }else{
+                        Pie(
+                            startAngle: Angle(degrees: 0-90),
+                            endAngle: Angle(degrees: (1-card.bonusRemaining)*360-90)
+                        )
+                    }
+                }
                     .padding(5)
                     .opacity(0.5)
                 Text(self.card.content)
@@ -26,7 +42,6 @@ struct CardView: View{
                     .scaleEffect(self.scale(thatFits: geometry.size))
             }
             .cardify(isFaceup: self.card.isFaceUp)
-            .foregroundColor(.red)
         }
     }
     

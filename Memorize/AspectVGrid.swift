@@ -43,7 +43,6 @@ struct AspectVGrid<Item, ItemView>: View where ItemView: View, Item: Identifiabl
     }
     
     private func widthThatFits(itemCount: Int, in size: CGSize, itemAspectRatio: CGFloat) -> CGFloat {
-        print(size)
         var columnCount = 1
         var rowCount = itemCount
         repeat{
@@ -59,7 +58,6 @@ struct AspectVGrid<Item, ItemView>: View where ItemView: View, Item: Identifiabl
             columnCount = itemCount
         }
         let result = floor(size.width / CGFloat(columnCount))
-        print(result)
         return result
     }
 }
