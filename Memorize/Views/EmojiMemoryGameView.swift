@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct EmojiMemoryGameView: View {
-    @ObservedObject var emojiGame: EmojiMemoryGame
+    @ObservedObject var emojiGame: MemoryGameHandler
     @State private var dealt = Set<Int>()
     @Namespace private var dealingNamespace
+    var theme: EmojiData.EmojiTheme
     
     var body: some View {
         ZStack(alignment: .bottom){
@@ -78,19 +79,19 @@ struct EmojiMemoryGameView: View {
         }
     }
     
-    private func zIndex(of card: EmojiMemoryGame.Card) -> Double{
+    private func zIndex(of card: MemoryGameHandler.Card) -> Double{
         -Double(self.emojiGame.cards.firstIndex(where: {$0.id == card.id}) ?? 0)
     }
     
-    private func deal(_ card: EmojiMemoryGame.Card){
+    private func deal(_ card: MemoryGameHandler.Card){
         dealt.insert(card.id)
     }
     
-    private func isUpdealt(_ card: EmojiMemoryGame.Card) -> Bool {
+    private func isUpdealt(_ card: MemoryGameHandler.Card) -> Bool {
         !dealt.contains(card.id)
     }
     
-    private func dealAnimation(for card: EmojiMemoryGame.Card) -> Animation {
+    private func dealAnimation(for card: MemoryGameHandler.Card) -> Animation {
         var delay = 0.0
         if let index = self.emojiGame.cards.firstIndex(where: { $0.id == card.id }){
             delay = Double(index) * (CardConstants.totalDealDuration / Double(self.emojiGame.cards.count))
@@ -111,7 +112,7 @@ struct EmojiMemoryGameView: View {
         Button("Restart"){
             withAnimation{
                 self.dealt = []
-                self.emojiGame.restart()
+                self.emojiGame.restart(with: self.theme)
             }
         }
     }
@@ -129,8 +130,8 @@ struct EmojiMemoryGameView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        let game = EmojiMemoryGame()
-        EmojiMemoryGameView(emojiGame: game)
+        let game = MemoryGameHandler(with: .food)
+        EmojiMemoryGameView(emojiGame: game, theme: .food)
             .preferredColorScheme(.dark)
             .previewInterfaceOrientation(.portrait)
     }

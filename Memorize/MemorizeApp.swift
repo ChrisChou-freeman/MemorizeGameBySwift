@@ -9,10 +9,13 @@ import SwiftUI
 
 @main
 struct MemorizeApp: App {
-    let game = EmojiMemoryGame()
+    init(){
+        // turn off fuck annoying logs
+        UserDefaults.standard.setValue(false, forKey:"_UIConstraintBasedLayoutLogUnsatisfiable")
+    }
     var body: some Scene {
-        WindowGroup { 
-            EmojiMemoryGameView(emojiGame: game)
+        WindowGroup {
+            MemoryGameList()
         }
     }
 }

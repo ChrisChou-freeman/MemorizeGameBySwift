@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CardView: View{
-    let card: EmojiMemoryGame.Card
+    let card: MemoryGameHandler.Card
     @State private var animatedBonusRemianing: Double = 0
     
     var body: some View{
