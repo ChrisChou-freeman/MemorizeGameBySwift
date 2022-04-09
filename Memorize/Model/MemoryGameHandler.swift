@@ -12,8 +12,13 @@ class MemoryGameHandler: ObservableObject {
     typealias Card = MemoryGame<String>.Card
     static let emojiDatas: [EmojiData] = loadJsonToStruct("Emojis.json")
     @Published private var model: MemoryGame<String>
+    
     var cards: [Card]{
         return self.model.cards
+    }
+    
+    var score: Int{
+        return self.model.score
     }
     
     init(with theme: EmojiData.EmojiTheme){

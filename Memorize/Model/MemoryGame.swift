@@ -9,6 +9,7 @@ import Foundation
 
 struct MemoryGame<CardContent> where CardContent: Equatable {
     private(set) var cards: [Card]
+    var score: Int = 0
     private var indexOfTheOnlyFaceUpCard: Int? {
         get { self.cards.indices.filter{self.cards[$0].isFaceUp}.oneAndOnly }
         set{ self.cards.indices.forEach{ self.cards[$0].isFaceUp = ($0 == newValue) } }
@@ -32,12 +33,26 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
                 if self.cards[chosenIndex].content == self.cards[potentialMatchIndex].content{
                     self.cards[chosenIndex].isMatched = true
                     self.cards[potentialMatchIndex].isMatched = true
+                    self.score += 2
+                }else{
+                    self.markAndCountScore(for: chosenIndex, and: potentialMatchIndex)
                 }
                 self.cards[chosenIndex].isFaceUp = true
             }else{
                 self.indexOfTheOnlyFaceUpCard = chosenIndex
             }
         }
+    }
+    
+    private mutating func markAndCountScore(for chosenIndex: Int, and potentialMatchIndex: Int){
+        if self.cards[chosenIndex].isFliped{
+            self.score -= 1
+        }
+        if self.cards[potentialMatchIndex].isFliped{
+            self.score -= 1
+        }
+        self.cards[chosenIndex].isFliped = true
+        self.cards[potentialMatchIndex].isFliped = true
     }
     
     func index(of card: Card) -> Int?{

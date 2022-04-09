@@ -11,16 +11,15 @@ struct MemoryGameRow: View {
     var emoji: EmojiData
     
     var body: some View {
-        HStack{
+        VStack(alignment:.leading){
             Text(emoji.theme.rawValue)
-            Text(datasSubList.joined())
+                .bold()
+                .font(.title2)
+            Text(emoji.datas.joined())
         }
         .padding(.vertical, 4)
     }
     
-    var datasSubList: [String]{
-        Array(emoji.datas[...10])
-    }
 }
 
 struct MemoryGameRow_Previews: PreviewProvider {

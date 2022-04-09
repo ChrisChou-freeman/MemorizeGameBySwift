@@ -10,7 +10,6 @@ import SwiftUI
 @main
 struct MemorizeApp: App {
     init(){
-        // turn off fuck annoying logs
         UserDefaults.standard.setValue(false, forKey:"_UIConstraintBasedLayoutLogUnsatisfiable")
     }
     var body: some Scene {

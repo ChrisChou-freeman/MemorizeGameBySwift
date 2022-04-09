@@ -11,6 +11,7 @@ extension MemoryGame{
     struct Card: Identifiable {
         let content: CardContent
         let id: Int
+        var isFliped = false
         var isFaceUp = false {
             didSet {
                 if self.isFaceUp {
@@ -64,7 +65,7 @@ extension MemoryGame{
         }
         
         private mutating func stopUsingBonusTime() {
-            self.pastFaceUpTime = faceUpTime
+            self.pastFaceUpTime = 0
             self.lastFaceUpDate = nil
         }
     }

@@ -13,14 +13,13 @@ struct MemoryGameList: View {
             List{
                 ForEach(MemoryGameHandler.emojiDatas){ emoji in
                     NavigationLink{
-                        EmojiMemoryGameView(
+                        GameView(
                             emojiGame: MemoryGameHandler(with: emoji.theme),
                             theme: emoji.theme
                         )
                     } label: {
                         MemoryGameRow(emoji: emoji)
                     }
-                    .tag(emoji)
                 }
             }
             .navigationTitle("Game List")
@@ -28,6 +27,7 @@ struct MemoryGameList: View {
         }
     }
 }
+
 
 struct MemoryGameList_Previews: PreviewProvider {
     static var previews: some View {
