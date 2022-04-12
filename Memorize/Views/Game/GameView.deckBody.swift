@@ -12,7 +12,7 @@ import SwiftUI
 extension GameView{
     var deckBody: some View{
         ZStack{
-            ForEach(self.emojiGame.cards.filter(self.isUpdealt)) { card in
+            ForEach(self.game.cards.filter(self.isUpdealt)) { card in
                 CardView(card: card)
                     .matchedGeometryEffect(id: card.id, in: dealingNamespace)
                     .transition(
@@ -27,7 +27,7 @@ extension GameView{
         .frame(width: CardConstants.undealWidth, height: CardConstants.undealHeight)
         .foregroundColor(CardConstants.color)
         .onTapGesture {
-            for card in self.emojiGame.cards{
+            for card in self.game.cards{
                 withAnimation(self.dealAnimation(for: card)){
                     self.deal(card)
                 }

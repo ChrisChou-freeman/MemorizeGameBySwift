@@ -10,7 +10,7 @@ import SwiftUI
 
 extension GameView{
     var gameBody: some View {
-        AspectVGrid(items: self.emojiGame.cards, aspectRation: 2/3){ card in
+        return AspectVGrid(items: self.game.cards, aspectRation: 2/3){ card in
             if self.isUpdealt(card) || (card.isMatched && !card.isFaceUp){
                 Color.clear
             } else {
@@ -26,7 +26,7 @@ extension GameView{
                     .zIndex(self.zIndex(of: card))
                     .onTapGesture {
                         withAnimation{
-                            self.emojiGame.choose(card)
+                            self.game.choose(card)
                         }
                     }
             }

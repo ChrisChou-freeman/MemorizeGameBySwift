@@ -8,19 +8,23 @@
 import Foundation
 
 struct MemoryGame<CardContent> where CardContent: Equatable {
-    private(set) var cards: [Card]
-    var score: Int = 0
+    private(set) var cards: [Card] = []
     private var indexOfTheOnlyFaceUpCard: Int? {
         get { self.cards.indices.filter{self.cards[$0].isFaceUp}.oneAndOnly }
         set{ self.cards.indices.forEach{ self.cards[$0].isFaceUp = ($0 == newValue) } }
     }
+    var score: Int = 0
+    private var numberOfPairsCards: Int
     
-    init(numberOfPairsCards: Int, createCardContent: (Int) -> CardContent){
+    init(numberOfPairsCards: Int){
+        self.numberOfPairsCards = numberOfPairsCards
+    }
+    
+    mutating func loadCards(cardContents: [CardContent]){
         self.cards = []
-        for pairIndex in 0..<numberOfPairsCards {
-            let content: CardContent = createCardContent(pairIndex)
-            cards.append(Card(content: content, id: pairIndex*2))
-            cards.append(Card(content: content, id: pairIndex*2+1))
+        for pairIndex in 0..<numberOfPairsCards{
+            cards.append(Card(content: cardContents[pairIndex], id: pairIndex*2))
+            cards.append(Card(content: cardContents[pairIndex], id: pairIndex*2 + 1))
         }
         self.cards.shuffle()
     }

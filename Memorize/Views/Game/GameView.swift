@@ -8,15 +8,19 @@
 import SwiftUI
 
 struct GameView: View {
-    @ObservedObject var emojiGame: MemoryGameHandler
+    @EnvironmentObject var game: MemoryGameHandler
     @State private var dealt = Set<Int>()
     @Namespace var dealingNamespace
     var theme: EmojiData.EmojiTheme
     
+    init(theme: EmojiData.EmojiTheme){
+        self.theme = theme
+    }
+    
     var body: some View {
         ZStack(alignment: .bottom){
             VStack{
-                Text("Score: \(self.emojiGame.score)")
+                Text("Score: \(self.game.score)")
                     .bold()
                 self.gameBody
                 HStack{
@@ -29,10 +33,13 @@ struct GameView: View {
             self.deckBody
         }
         .padding()
+        .onAppear{
+            self.game.start(with: self.theme)
+        }
     }
     
     func zIndex(of card: MemoryGameHandler.Card) -> Double{
-        -Double(self.emojiGame.cards.firstIndex(where: {$0.id == card.id}) ?? 0)
+        -Double(self.game.cards.firstIndex(where: {$0.id == card.id}) ?? 0)
     }
     
     func deal(_ card: MemoryGameHandler.Card){
@@ -45,8 +52,8 @@ struct GameView: View {
     
     func dealAnimation(for card: MemoryGameHandler.Card) -> Animation {
         var delay = 0.0
-        if let index = self.emojiGame.cards.firstIndex(where: { $0.id == card.id }){
-            delay = Double(index) * (CardConstants.totalDealDuration / Double(self.emojiGame.cards.count))
+        if let index = self.game.cards.firstIndex(where: { $0.id == card.id }){
+            delay = Double(index) * (CardConstants.totalDealDuration / Double(self.game.cards.count))
         }
         return Animation.easeInOut(duration: CardConstants.dealDuration).delay(delay)
     }
@@ -54,7 +61,7 @@ struct GameView: View {
     var shuffle: some View{
         Button("Shuffle"){
             withAnimation{
-                self.emojiGame.shuffle()
+                self.game.shuffle()
             }
         }
     }
@@ -63,7 +70,7 @@ struct GameView: View {
         Button("Restart"){
             withAnimation{
                 self.dealt = []
-                self.emojiGame.restart(with: self.theme)
+                self.game.restart(with: self.theme)
             }
         }
     }
@@ -71,10 +78,11 @@ struct GameView: View {
 
 
 struct ContentView_Previews: PreviewProvider {
-    static let game = MemoryGameHandler(with: .food)
+    static var game = MemoryGameHandler()
     static var previews: some View {
-        return GameView(emojiGame: game, theme: .food)
+        return GameView(theme: .food)
             .preferredColorScheme(.dark)
             .previewInterfaceOrientation(.portrait)
+            .environmentObject(game)
     }
 }

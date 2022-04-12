@@ -16,5 +16,6 @@ struct EmojiData: Hashable, Codable, Identifiable{
     enum EmojiTheme: String, Codable, Equatable{
         case vehicle
         case food
+        case empty
     }
 }

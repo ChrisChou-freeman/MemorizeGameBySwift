@@ -10,8 +10,16 @@ import SwiftUI
 
 class MemoryGameHandler: ObservableObject {
     typealias Card = MemoryGame<String>.Card
-    static let emojiDatas: [EmojiData] = loadJsonToStruct("Emojis.json")
-    @Published private var model: MemoryGame<String>
+    @Published var emojiDatas: [EmojiData]{
+        didSet{
+            saveStructsToFile(emojiDatas, to: "Emojis.json")
+        }
+    }
+    @Published private var model = MemoryGame<String>(numberOfPairsCards: 10)
+    
+    init(){
+        self.emojiDatas = loadJsonToStruct("Emojis.json")
+    }
     
     var cards: [Card]{
         return self.model.cards
@@ -21,22 +29,18 @@ class MemoryGameHandler: ObservableObject {
         return self.model.score
     }
     
-    init(with theme: EmojiData.EmojiTheme){
-        self.model = MemoryGameHandler.createMemryGame(with: theme)
-    }
-    
-    private static func getEmojis(with theme: EmojiData.EmojiTheme) -> [String] {
+    func start(with theme: EmojiData.EmojiTheme){
         let datas = emojiDatas.first{
             $0.theme == theme
-        }?.datas
-        return datas!
+        }!.datas
+        if datas.isEmpty{
+            return
+        }
+        self.model.loadCards(cardContents: datas)
     }
     
-    private static func createMemryGame(with theme: EmojiData.EmojiTheme) -> MemoryGame<String>{
-        let datas = getEmojis(with: theme)
-        return MemoryGame(numberOfPairsCards: 10) { pairIndex in
-            datas[pairIndex]
-        }
+    func addGameList(){
+        emojiDatas.append(EmojiData(id: emojiDatas.count + Int.random(in: 1...10000), theme: .empty, datas: []))
     }
     
     // MARK: - choose
@@ -49,6 +53,7 @@ class MemoryGameHandler: ObservableObject {
     }
     
     func restart(with theme: EmojiData.EmojiTheme){
-        self.model = MemoryGameHandler.createMemryGame(with: theme)
+        self.model = MemoryGame<String>(numberOfPairsCards: 10)
+        self.start(with: theme)
     }
 }

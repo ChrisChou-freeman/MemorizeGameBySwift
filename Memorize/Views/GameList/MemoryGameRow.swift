@@ -23,7 +23,8 @@ struct MemoryGameRow: View {
 }
 
 struct MemoryGameRow_Previews: PreviewProvider {
+    static var game = MemoryGameHandler()
     static var previews: some View {
-        MemoryGameRow(emoji: MemoryGameHandler.emojiDatas[0])
+        MemoryGameRow(emoji: game.emojiDatas[0])
     }
 }

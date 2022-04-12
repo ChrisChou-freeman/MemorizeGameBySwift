@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2202BFAF280562E2001F5F9C /* GameEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2202BFAE280562E1001F5F9C /* GameEditView.swift */; };
 		2208876328003CD400660951 /* GameView.body.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2208876228003CD400660951 /* GameView.body.swift */; };
 		2208876528003DB600660951 /* GameView.deckBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2208876428003DB600660951 /* GameView.deckBody.swift */; };
 		2208876728003E1E00660951 /* GameView.constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2208876628003E1E00660951 /* GameView.constants.swift */; };
 		221635DB27F2DA86004C0FAB /* Cardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221635DA27F2DA86004C0FAB /* Cardify.swift */; };
 		227ABE9127FFD85600B10766 /* MemoryGame.Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227ABE9027FFD85600B10766 /* MemoryGame.Card.swift */; };
-		227ABE9327FFDA2F00B10766 /* FileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227ABE9227FFDA2F00B10766 /* FileReader.swift */; };
+		227ABE9327FFDA2F00B10766 /* JsonFileHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227ABE9227FFDA2F00B10766 /* JsonFileHandler.swift */; };
 		227ABE9527FFDA8900B10766 /* EmojiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227ABE9427FFDA8900B10766 /* EmojiData.swift */; };
 		227ABE9627FFDBE100B10766 /* Emojis.json in Resources */ = {isa = PBXBuildFile; fileRef = 22627D6927FF133600CFD70A /* Emojis.json */; };
 		227ABE9827FFDC5900B10766 /* MemoryGameList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227ABE9727FFDC5900B10766 /* MemoryGameList.swift */; };
@@ -29,13 +30,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2202BFAE280562E1001F5F9C /* GameEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEditView.swift; sourceTree = "<group>"; };
 		2208876228003CD400660951 /* GameView.body.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.body.swift; sourceTree = "<group>"; };
 		2208876428003DB600660951 /* GameView.deckBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.deckBody.swift; sourceTree = "<group>"; };
 		2208876628003E1E00660951 /* GameView.constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.constants.swift; sourceTree = "<group>"; };
 		221635DA27F2DA86004C0FAB /* Cardify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cardify.swift; sourceTree = "<group>"; };
 		22627D6927FF133600CFD70A /* Emojis.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Emojis.json; sourceTree = "<group>"; };
 		227ABE9027FFD85600B10766 /* MemoryGame.Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGame.Card.swift; sourceTree = "<group>"; };
-		227ABE9227FFDA2F00B10766 /* FileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReader.swift; sourceTree = "<group>"; };
+		227ABE9227FFDA2F00B10766 /* JsonFileHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonFileHandler.swift; sourceTree = "<group>"; };
 		227ABE9427FFDA8900B10766 /* EmojiData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiData.swift; sourceTree = "<group>"; };
 		227ABE9727FFDC5900B10766 /* MemoryGameList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGameList.swift; sourceTree = "<group>"; };
 		227ABE9C27FFE0E900B10766 /* MemoryGameRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGameRow.swift; sourceTree = "<group>"; };
@@ -110,7 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				22BCC2BB27EDEB1F00EF7273 /* Pie.swift */,
-				227ABE9227FFDA2F00B10766 /* FileReader.swift */,
+				227ABE9227FFDA2F00B10766 /* JsonFileHandler.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -151,6 +153,7 @@
 				2208876628003E1E00660951 /* GameView.constants.swift */,
 				2208876428003DB600660951 /* GameView.deckBody.swift */,
 				2208876228003CD400660951 /* GameView.body.swift */,
+				2202BFAE280562E1001F5F9C /* GameEditView.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -272,9 +275,10 @@
 				227ABE9527FFDA8900B10766 /* EmojiData.swift in Sources */,
 				22C9EAAD27E5BA2100E2A755 /* MemorizeApp.swift in Sources */,
 				22BCC2B827ED989500EF7273 /* AspectVGrid.swift in Sources */,
+				2202BFAF280562E2001F5F9C /* GameEditView.swift in Sources */,
 				2208876328003CD400660951 /* GameView.body.swift in Sources */,
 				2208876528003DB600660951 /* GameView.deckBody.swift in Sources */,
-				227ABE9327FFDA2F00B10766 /* FileReader.swift in Sources */,
+				227ABE9327FFDA2F00B10766 /* JsonFileHandler.swift in Sources */,
 				22BCC2BC27EDEB1F00EF7273 /* Pie.swift in Sources */,
 				22BCC2BA27EDAB9400EF7273 /* CardView.swift in Sources */,
 				22896F0D27E852E500A3EF8F /* MemoryGameHandler.swift in Sources */,
