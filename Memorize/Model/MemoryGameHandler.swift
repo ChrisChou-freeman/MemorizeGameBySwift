@@ -29,7 +29,7 @@ class MemoryGameHandler: ObservableObject {
         return self.model.score
     }
     
-    func start(with theme: EmojiData.EmojiTheme){
+    func start(with theme: String){
         let datas = emojiDatas.first{
             $0.theme == theme
         }!.datas
@@ -40,7 +40,15 @@ class MemoryGameHandler: ObservableObject {
     }
     
     func addGameList(){
-        emojiDatas.append(EmojiData(id: emojiDatas.count + Int.random(in: 1...10000), theme: .empty, datas: []))
+        emojiDatas.append(
+            EmojiData(
+                id: emojiDatas.count + Int.random(in: 1...10000),
+                theme: "empty",
+                datas: [],
+                cardPairs: 0,
+                color: .wihte
+            )
+        )
     }
     
     // MARK: - choose
@@ -52,7 +60,7 @@ class MemoryGameHandler: ObservableObject {
         self.model.shuffle()
     }
     
-    func restart(with theme: EmojiData.EmojiTheme){
+    func restart(with theme: String){
         self.model = MemoryGame<String>(numberOfPairsCards: 10)
         self.start(with: theme)
     }

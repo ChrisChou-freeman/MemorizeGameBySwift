@@ -11,9 +11,9 @@ struct GameView: View {
     @EnvironmentObject var game: MemoryGameHandler
     @State private var dealt = Set<Int>()
     @Namespace var dealingNamespace
-    var theme: EmojiData.EmojiTheme
+    var theme: String
     
-    init(theme: EmojiData.EmojiTheme){
+    init(theme: String){
         self.theme = theme
     }
     
@@ -80,7 +80,7 @@ struct GameView: View {
 struct ContentView_Previews: PreviewProvider {
     static var game = MemoryGameHandler()
     static var previews: some View {
-        return GameView(theme: .food)
+        return GameView(theme: "food")
             .preferredColorScheme(.dark)
             .previewInterfaceOrientation(.portrait)
             .environmentObject(game)

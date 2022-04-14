@@ -9,7 +9,7 @@ import SwiftUI
 
 extension GameView{
     struct CardConstants {
-        static let color = Color.red
+        static let color = Color.colorFromHex(hex: 0xf5deb3)
         static let aspectRatio: CGFloat = 2/3
         static let dealDuration: Double = 0.5
         static let totalDealDuration: Double = 2

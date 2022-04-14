@@ -10,12 +10,15 @@ import Foundation
 
 struct EmojiData: Hashable, Codable, Identifiable{
     var id: Int
-    var theme: EmojiTheme
+    var theme: String
     var datas: [String]
+    var cardPairs: Int
+    var color: EmojiColor
     
-    enum EmojiTheme: String, Codable, Equatable{
-        case vehicle
-        case food
-        case empty
+    enum EmojiColor: String, Codable, Equatable, CaseIterable{
+        case red = "ff2400"
+        case green = "32cd32"
+        case blue = "5b92e5"
+        case wihte = "fffff"
     }
 }

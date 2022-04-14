@@ -9,7 +9,9 @@ import SwiftUI
 
 struct MemoryGameList: View {
     @EnvironmentObject var game: MemoryGameHandler
-    @Environment(\.editMode) private var editMode
+    @State private var editMode: EditMode = EditMode.inactive
+    @State private var showEditView = false
+    @State private var editIndex: Int = 0
     
     var body: some View {
         NavigationView{
@@ -22,14 +24,23 @@ struct MemoryGameList: View {
                     } label: {
                         MemoryGameRow(emoji: emoji)
                     }
+                    .gesture(
+                        editMode == .active ? editTap(
+                            for: game.emojiDatas.firstIndex(of: emoji)
+                        ) : nil
+                    )
                 }
                 .onDelete(perform: { index in
                     self.game.emojiDatas.remove(atOffsets: index)
                 })
             }
+            .environment(\.editMode, $editMode)
             .toolbar{
                 plusGameButton
                 editGameButton
+            }
+            .sheet(isPresented: $showEditView){
+                GameEditView(isShowingSheet: $showEditView, editIndex: 0)
             }
             .navigationTitle("Game List")
             Text("Select a Game")
@@ -48,7 +59,28 @@ struct MemoryGameList: View {
     
     var editGameButton: some ToolbarContent{
         ToolbarItem(placement: .navigationBarLeading){
-            EditButton()
+            Button{
+                let nowEditMode = editMode
+                withAnimation(){
+                    editMode = nowEditMode == .inactive ? .active : .inactive
+                }
+            }label: {
+                Group{
+                    if editMode == .inactive{
+                        Text("Edit")
+                    }else{
+                        Text("Done")
+                    }
+                }
+            }
+        }
+    }
+    
+    func editTap(for editIndex: Int?) -> some Gesture {
+        TapGesture().onEnded{
+            print("tap")
+            self.editIndex = editIndex!
+            showEditView.toggle()
         }
     }
 }
@@ -58,6 +90,7 @@ struct MemoryGameList_Previews: PreviewProvider {
     static var game = MemoryGameHandler()
     static var previews: some View {
         MemoryGameList()
+            .preferredColorScheme(.dark)
             .environmentObject(game)
     }
 }

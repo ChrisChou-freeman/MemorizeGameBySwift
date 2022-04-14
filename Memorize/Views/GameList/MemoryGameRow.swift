@@ -12,7 +12,7 @@ struct MemoryGameRow: View {
     
     var body: some View {
         VStack(alignment:.leading){
-            Text(emoji.theme.rawValue)
+            Text(emoji.theme)
                 .bold()
                 .font(.title2)
             Text(emoji.datas.joined())
