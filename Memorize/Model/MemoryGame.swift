@@ -20,11 +20,11 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         self.numberOfPairsCards = numberOfPairsCards
     }
     
-    mutating func loadCards(cardContents: [CardContent]){
+    mutating func loadCards(cardContents: [CardContent], color: EmojiData.EmojiColor){
         self.cards = []
         for pairIndex in 0..<numberOfPairsCards{
-            cards.append(Card(content: cardContents[pairIndex], id: pairIndex*2))
-            cards.append(Card(content: cardContents[pairIndex], id: pairIndex*2 + 1))
+            cards.append(Card(content: cardContents[pairIndex], id: pairIndex*2, color: color))
+            cards.append(Card(content: cardContents[pairIndex], id: pairIndex*2 + 1, color: color))
         }
         self.cards.shuffle()
     }

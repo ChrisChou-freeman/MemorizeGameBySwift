@@ -1,5 +1,5 @@
 //
-//  GameEditView.swift
+//  ListEditView.swift
 //  Memorize
 //
 //  Created by ChrisChou on 2022/4/12.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GameEditView: View {
+struct ListEditView: View {
     @EnvironmentObject var game: MemoryGameHandler
     @Binding var isShowingSheet: Bool
     @State var text = "some"
@@ -85,16 +85,11 @@ struct GameEditView: View {
     private func colorCard(width: CGFloat, height: CGFloat, to color: EmojiData.EmojiColor) -> some View{
         ZStack{
             let shape = RoundedRectangle(cornerRadius: 10)
-            if color == .wihte{
-//                shape.strokeBorder(lineWidth: 1).foregroundColor(.black)
-                shape.fill(.white)
-            }else{
-                shape.fill().foregroundColor(
-                    Color.colorFromHex(hex: color.rawValue.convertHexStringToInt())
-                )
-            }
+            shape.fill().foregroundColor(Color.colorFromHex(hex: color.rawValue.convertHexStringToInt()))
+            shape.strokeBorder(lineWidth: 3)
             if game.emojiDatas[editIndex].color == color{
                 Image(systemName: "checkmark.circle")
+                    .foregroundColor(.black)
             }
         }
         .onTapGesture {
@@ -110,8 +105,8 @@ struct GameEdit_Previews: PreviewProvider {
     @State static var someBool = false
     static var game = MemoryGameHandler()
     static var previews: some View {
-        GameEditView(isShowingSheet: $someBool, editIndex: 0)
-            .preferredColorScheme(.light)
+        ListEditView(isShowingSheet: $someBool, editIndex: 0)
+            .preferredColorScheme(.dark)
             .environmentObject(game)
     }
 }

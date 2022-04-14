@@ -30,13 +30,13 @@ class MemoryGameHandler: ObservableObject {
     }
     
     func start(with theme: String){
-        let datas = emojiDatas.first{
+        let emojidata = emojiDatas.first{
             $0.theme == theme
-        }!.datas
-        if datas.isEmpty{
+        }!
+        if emojidata.datas.isEmpty{
             return
         }
-        self.model.loadCards(cardContents: datas)
+        self.model.loadCards(cardContents: emojidata.datas, color: emojidata.color)
     }
     
     func addGameList(){

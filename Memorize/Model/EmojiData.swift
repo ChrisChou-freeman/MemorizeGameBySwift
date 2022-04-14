@@ -19,6 +19,6 @@ struct EmojiData: Hashable, Codable, Identifiable{
         case red = "ff2400"
         case green = "32cd32"
         case blue = "5b92e5"
-        case wihte = "fffff"
+        case wihte = "FFFFFF"
     }
 }

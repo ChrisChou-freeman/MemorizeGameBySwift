@@ -15,7 +15,7 @@ struct MemorizeApp: App {
     }
     var body: some Scene {
         WindowGroup {
-            MemoryGameList()
+            GameList()
                 .environmentObject(game)
         }
     }

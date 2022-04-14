@@ -1,5 +1,5 @@
 //
-//  MemoryGameRow.swift
+//  ListRow.swift
 //  Memorize
 //
 //  Created by ChrisChou on 2022/4/8.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MemoryGameRow: View {
+struct ListRow: View {
     var emoji: EmojiData
     
     var body: some View {
@@ -25,6 +25,6 @@ struct MemoryGameRow: View {
 struct MemoryGameRow_Previews: PreviewProvider {
     static var game = MemoryGameHandler()
     static var previews: some View {
-        MemoryGameRow(emoji: game.emojiDatas[0])
+        ListRow(emoji: game.emojiDatas[0])
     }
 }

@@ -21,11 +21,11 @@ extension GameView{
                             removal: .identity
                         )
                     )
+                    .foregroundColor(.colorFromHex(hex: card.color.rawValue.convertHexStringToInt()))
                     .zIndex(self.zIndex(of: card))
             }
         }
         .frame(width: CardConstants.undealWidth, height: CardConstants.undealHeight)
-        .foregroundColor(CardConstants.color)
         .onTapGesture {
             for card in self.game.cards{
                 withAnimation(self.dealAnimation(for: card)){

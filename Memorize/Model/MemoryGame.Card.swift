@@ -11,6 +11,7 @@ extension MemoryGame{
     struct Card: Identifiable {
         let content: CardContent
         let id: Int
+        let color: EmojiData.EmojiColor
         var isFliped = false
         var isFaceUp = false {
             didSet {

@@ -1,5 +1,5 @@
 //
-//  MemoryGameList.swift
+//  GameList.swift
 //  Memorize
 //
 //  Created by ChrisChou on 2022/4/8.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MemoryGameList: View {
+struct GameList: View {
     @EnvironmentObject var game: MemoryGameHandler
     @State private var editMode: EditMode = EditMode.inactive
     @State private var showEditView = false
@@ -22,7 +22,7 @@ struct MemoryGameList: View {
                             theme: emoji.theme
                         )
                     } label: {
-                        MemoryGameRow(emoji: emoji)
+                        ListRow(emoji: emoji)
                     }
                     .gesture(
                         editMode == .active ? editTap(
@@ -40,7 +40,7 @@ struct MemoryGameList: View {
                 editGameButton
             }
             .sheet(isPresented: $showEditView){
-                GameEditView(isShowingSheet: $showEditView, editIndex: 0)
+                ListEditView(isShowingSheet: $showEditView, editIndex: 0)
             }
             .navigationTitle("Game List")
             Text("Select a Game")
@@ -89,7 +89,7 @@ struct MemoryGameList: View {
 struct MemoryGameList_Previews: PreviewProvider {
     static var game = MemoryGameHandler()
     static var previews: some View {
-        MemoryGameList()
+        GameList()
             .preferredColorScheme(.dark)
             .environmentObject(game)
     }
