@@ -30,6 +30,7 @@
 		22C9EAAF27E5BA2100E2A755 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9EAAE27E5BA2100E2A755 /* GameView.swift */; };
 		22C9EAB127E5BA2300E2A755 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22C9EAB027E5BA2300E2A755 /* Assets.xcassets */; };
 		22C9EAB427E5BA2300E2A755 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22C9EAB327E5BA2300E2A755 /* Preview Assets.xcassets */; };
+		22F7F73B28095ACD00A42B4E /* GameView.discardPile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F7F73A28095ACD00A42B4E /* GameView.discardPile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		22C9EAAE27E5BA2100E2A755 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		22C9EAB027E5BA2300E2A755 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22C9EAB327E5BA2300E2A755 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		22F7F73A28095ACD00A42B4E /* GameView.discardPile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.discardPile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 				22C9EAAE27E5BA2100E2A755 /* GameView.swift */,
 				2208876628003E1E00660951 /* GameView.constants.swift */,
 				2208876428003DB600660951 /* GameView.deckBody.swift */,
+				22F7F73A28095ACD00A42B4E /* GameView.discardPile.swift */,
 				2208876228003CD400660951 /* GameView.body.swift */,
 			);
 			path = Game;
@@ -287,6 +290,7 @@
 				22C9EAAD27E5BA2100E2A755 /* MemorizeApp.swift in Sources */,
 				22BCC2B827ED989500EF7273 /* AspectVGrid.swift in Sources */,
 				2202BFAF280562E2001F5F9C /* ListEditView.swift in Sources */,
+				22F7F73B28095ACD00A42B4E /* GameView.discardPile.swift in Sources */,
 				2208876328003CD400660951 /* GameView.body.swift in Sources */,
 				2208876528003DB600660951 /* GameView.deckBody.swift in Sources */,
 				227ABE9327FFDA2F00B10766 /* JsonFileHandler.swift in Sources */,

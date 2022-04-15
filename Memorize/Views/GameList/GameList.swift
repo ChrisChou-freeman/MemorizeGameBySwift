@@ -45,6 +45,7 @@ struct GameList: View {
             .navigationTitle("Game List")
             Text("Select a Game")
         }
+        .navigationViewStyle(.stack)
     }
     
     var plusGameButton: some ToolbarContent{
@@ -78,7 +79,6 @@ struct GameList: View {
     
     func editTap(for editIndex: Int?) -> some Gesture {
         TapGesture().onEnded{
-            print("tap")
             self.editIndex = editIndex!
             showEditView.toggle()
         }

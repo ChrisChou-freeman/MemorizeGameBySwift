@@ -12,7 +12,7 @@ extension GameView{
     var gameBody: some View {
         return AspectVGrid(items: self.game.cards, aspectRation: 2/3){ card in
             Group{
-                if self.isUpdealt(card) || (card.isMatched && !card.isFaceUp){
+                if self.isUpdealt(card) || (card.isMatched && !card.isFaceUp) || self.discardArray.contains(card.id){
                     Color.clear
                 } else {
                     CardView(card: card)
@@ -28,12 +28,12 @@ extension GameView{
                         .onTapGesture {
                             withAnimation{
                                 self.game.choose(card)
+                                self.discard()
                             }
                         }
                 }
             }
             .foregroundColor(Color.colorFromHex(hex: card.color.rawValue.convertHexStringToInt()))
         }
-        
     }
 }

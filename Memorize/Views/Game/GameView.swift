@@ -10,6 +10,7 @@ import SwiftUI
 struct GameView: View {
     @EnvironmentObject var game: MemoryGameHandler
     @State private var dealt = Set<Int>()
+    @State var discardArray: [Int] = []
     @Namespace var dealingNamespace
     var theme: String
     
@@ -23,6 +24,11 @@ struct GameView: View {
                 Text("Score: \(self.game.score)")
                     .bold()
                 self.gameBody
+                HStack{
+                    Spacer()
+                    self.discardPile
+                        .padding(.trailing, 10)
+                }
                 HStack{
                     self.restart
                     Spacer()
@@ -40,6 +46,18 @@ struct GameView: View {
     
     func zIndex(of card: MemoryGameHandler.Card) -> Double{
         -Double(self.game.cards.firstIndex(where: {$0.id == card.id}) ?? 0)
+    }
+    
+    func discard(){
+        for card in game.cards{
+            if card.isMatched{
+                discardArray.append(card.id)
+            }
+        }
+    }
+    
+    func isMatched(_ card: MemoryGameHandler.Card) -> Bool {
+        card.isMatched
     }
     
     func deal(_ card: MemoryGameHandler.Card){
@@ -70,6 +88,7 @@ struct GameView: View {
         Button("Restart"){
             withAnimation{
                 self.dealt = []
+                self.discardArray = []
                 self.game.restart(with: self.theme)
             }
         }

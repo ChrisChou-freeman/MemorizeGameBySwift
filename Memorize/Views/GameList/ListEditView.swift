@@ -36,6 +36,11 @@ struct ListEditView: View {
                             ForEach(game.emojiDatas[editIndex].datas, id: \.self){ item in
                                 Text(item)
                                     .font(.system(size: 40))
+                                    .onTapGesture {
+                                        game.emojiDatas[editIndex].datas.remove(
+                                            at: game.emojiDatas[editIndex].datas.firstIndex(of: item)!
+                                        )
+                                    }
                             }
                         }
                     }
